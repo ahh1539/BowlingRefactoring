@@ -1,2 +1,4 @@
 .DS_Store
 *.class
+.idea/misc.xml
+.idea/workspace.xml
