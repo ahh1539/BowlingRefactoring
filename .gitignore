@@ -2,12 +2,10 @@
 *.class
 .idea/misc.xml
 .idea/workspace.xml
-<<<<<<< HEAD
 *.xml
-=======
 *.DAT
 .idea/encodings.xml
 .idea/workspace.xml
 .idea/misc.xml
 SCOREHISTORY.DAT
->>>>>>> c3ceb19095e1b04cc6edb2713b11d734c0bfa095
+BOWLERS.DAT
