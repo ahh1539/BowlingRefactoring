@@ -289,7 +289,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @pre none
 	 * @post the event has been acted upon if desiered
 	 * 
-	 * @param pe 		The pinsetter event that has been received.
+	 * @param pe The pinsetter event that has been received.
 	 */
 	public void receivePinsetterEvent(PinsetterEvent pe) {
 		
@@ -557,7 +557,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * 
 	 * Method that will add a subscriber
 	 * 
-	 * @param subscribe	Observer that is to be added
+	 * @param adding Observer that is to be added
 	 */
 
 	public void subscribe( LaneObserver adding ) {

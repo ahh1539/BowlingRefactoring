@@ -44,9 +44,14 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	private int maxSize;
 
 	private JFrame win;
-	private JButton addPatron, newPatron, remPatron, finished;
-	private JList partyList, allBowlers;
-	private Vector party, bowlerdb;
+	private JButton addPatron;
+	private JButton finished;
+	private JButton newPatron;
+	private JButton remPatron;
+	private JList partyList;
+	private JList allBowlers;
+	private Vector party;
+	private Vector bowlerdb;
 	private Integer lock;
 
 	private ControlDeskView controlDesk;
@@ -179,7 +184,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 			if ( party != null && party.size() > 0) {
 				controlDesk.updateAddParty( this );
 			}
-			win.hide();
+			win.setVisible(false);
 		}
 
 	}
