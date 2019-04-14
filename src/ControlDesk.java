@@ -42,34 +42,36 @@
 
 import java.util.*;
 import java.io.*;
+import java.util.Queue;
 
 class ControlDesk extends Thread {
 
 	/** The collection of Lanes */
-	private HashSet lanes;
+	private HashSet<Lane> lanes;
 
 	/** The party wait queue */
-	private Queue partyQueue;
+	private Queue<Party> partyQueue;
+
 
 	/** The number of lanes represented */
 	private int numLanes;
 	
 	/** The collection of subscribers */
-	private Vector subscribers;
+	private ArrayList<ControlDeskObserver> subscribers;
 
     /**
      * Constructor for the ControlDesk class
      *
-     * @param numlanes	the numbler of lanes to be represented
+     * @param numLanes	the number of lanes to be represented
      *
      */
 
 	public ControlDesk(int numLanes) {
 		this.numLanes = numLanes;
 		lanes = new HashSet(numLanes);
-		partyQueue = new Queue();
+		partyQueue = new LinkedList();
 
-		subscribers = new Vector();
+		subscribers = new ArrayList<>();
 
 		for (int i = 0; i < numLanes; i++) {
 			lanes.add(new Lane());
@@ -129,23 +131,17 @@ class ControlDesk extends Thread {
 	public void assignLane() {
 		Iterator it = lanes.iterator();
 
-		while (it.hasNext() && partyQueue.hasMoreElements()) {
+		while (it.hasNext() && partyQueue.isEmpty()) {
 			Lane curLane = (Lane) it.next();
 
 			if (curLane.isPartyAssigned() == false) {
 				System.out.println("ok... assigning this party");
-				curLane.assignParty(((Party) partyQueue.next()));
+				curLane.assignParty(((Party) partyQueue.poll()));
 			}
 		}
 		publish(new ControlDeskEvent(getPartyQueue()));
 	}
 
-    /**
-     */
-
-	public void viewScores(Lane ln) {
-		// TODO: attach a LaneScoreView object to that lane
-	}
 
     /**
      * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
@@ -168,22 +164,23 @@ class ControlDesk extends Thread {
     /**
      * Returns a Vector of party names to be displayed in the GUI representation of the wait queue.
 	 *
-     * @return a Vecotr of Strings
+     * @return a Vector of Strings
      *
      */
 
-	public Vector getPartyQueue() {
-		Vector displayPartyQueue = new Vector();
-		for ( int i=0; i < ( (Vector)partyQueue.asVector()).size(); i++ ) {
-			String nextParty =
-				((Bowler) ((Vector) ((Party) partyQueue.asVector().get( i ) ).getMembers())
-					.get(0))
-					.getNickName() + "'s Party";
-			displayPartyQueue.addElement(nextParty);
+	public ArrayList<String> getPartyQueue() {
+		ArrayList<String> displayPartyQueue = new ArrayList();
+		for ( int i=0; i < partyQueue.size(); i++ ) {
+			displayPartyQueue.add(getBowlerParty());
+			partyQueue.iterator().next();
 		}
 		return displayPartyQueue;
 	}
 
+	public String getBowlerParty(){
+
+		return partyQueue.peek().getMembers().get(0).getNickName();
+	}
     /**
      * Accessor for the number of lanes represented by the ControlDesk
      * 

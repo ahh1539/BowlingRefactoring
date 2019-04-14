@@ -51,8 +51,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 	private JList partyList;
 	private JList allBowlers;
 	private Vector party;
-	private Vector bowlerdb;
-	private Integer lock;
+	private ArrayList<String> bowlerdb;
 
 	private ControlDeskView controlDesk;
 
@@ -84,7 +83,6 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		partyList.setVisibleRowCount(5);
 		partyList.addListSelectionListener(this);
 		JScrollPane partyPane = new JScrollPane(partyList);
-		//        partyPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		partyPanel.add(partyPane);
 
 		// Bowler Database
@@ -93,12 +91,12 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		bowlerPanel.setBorder(new TitledBorder("Bowler Database"));
 
 		try {
-			bowlerdb = new Vector(BowlerFile.getBowlers());
+			bowlerdb = new ArrayList<String>(BowlerFile.getBowlers());
 		} catch (Exception e) {
 			System.err.println("File Error");
-			bowlerdb = new Vector();
+			bowlerdb = new ArrayList<>();
 		}
-		allBowlers = new JList(bowlerdb);
+		allBowlers = new JList(bowlerdb.toArray());
 		allBowlers.setVisibleRowCount(8);
 		allBowlers.setFixedCellWidth(120);
 		JScrollPane bowlerPane = new JScrollPane(allBowlers);
@@ -156,7 +154,7 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 		win.setLocation(
 			((screenSize.width) / 2) - ((win.getSize().width) / 2),
 			((screenSize.height) / 2) - ((win.getSize().height) / 2));
-		win.show();
+		win.setVisible(true);
 
 	}
 
@@ -227,8 +225,10 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 					newPatron.getNick(),
 					newPatron.getFull(),
 					newPatron.getEmail());
-				bowlerdb = new Vector(BowlerFile.getBowlers());
-				allBowlers.setListData(bowlerdb);
+				bowlerdb = new ArrayList<>(BowlerFile.getBowlers());
+
+				//TODO CHECK THIS!!
+				allBowlers.setListData(bowlerdb.toArray());
 				party.add(newPatron.getNick());
 				partyList.setListData(party);
 			} else {

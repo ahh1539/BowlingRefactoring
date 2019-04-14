@@ -25,7 +25,7 @@ import java.io.*;
 class BowlerFile {
 
 	/** The location of the bowelr database */
-	private static String BOWLER_DAT = "BOWLERS.DAT";
+	private static final String BOWLER_DAT = "BOWLERS.DAT";
 
     /**
      * Retrieves bowler information from the database and returns a Bowler objects with populated fields.
@@ -37,7 +37,7 @@ class BowlerFile {
      */
 
 	public static Bowler getBowlerInfo(String nickName)
-		throws IOException, FileNotFoundException {
+		throws IOException {
 
 		BufferedReader in = new BufferedReader(new FileReader(BOWLER_DAT));
 		String data;
@@ -72,7 +72,7 @@ class BowlerFile {
 		String nickName,
 		String fullName,
 		String email)
-		throws IOException, FileNotFoundException {
+		throws IOException {
 
 		String data = nickName + "\t" + fullName + "\t" + email + "\n";
 
@@ -85,14 +85,14 @@ class BowlerFile {
     /**
      * Retrieves a list of nicknames in the bowler database
      *
-     * @return a Vector of Strings
+     * @return an ArrayList of Strings
      * 
      */
 
-	public static Vector getBowlers()
-		throws IOException, FileNotFoundException {
+	public static ArrayList getBowlers()
+		throws IOException {
 
-		Vector allBowlers = new Vector();
+		ArrayList allBowlers = new ArrayList<String>();
 
 		BufferedReader in = new BufferedReader(new FileReader(BOWLER_DAT));
 		String data;

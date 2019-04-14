@@ -27,7 +27,7 @@ import java.util.*;
 public class Party {
 
 	/** Vector of bowlers in this party */	
-    private Vector myBowlers;
+    private ArrayList<Bowler> myBowlers;
 	
 	/**
 	 * Constructor for a Party
@@ -36,7 +36,7 @@ public class Party {
 	 */
 		
     public Party( Vector bowlers ) {
-		myBowlers = new Vector(bowlers);
+		myBowlers = new ArrayList<>(bowlers);
     }
 
 	/**
@@ -45,7 +45,7 @@ public class Party {
 	 * @return 	A vector of the bowlers in this party
 	 */
 
-    public Vector getMembers() {
+    public ArrayList<Bowler> getMembers() {
 		return myBowlers;
     }
 
