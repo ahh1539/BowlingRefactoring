@@ -35,7 +35,7 @@ public class Party {
 	 * @param bowlers	Vector of bowlers that are in this party
 	 */
 		
-    public Party( Vector bowlers ) {
+    public Party(ArrayList<Bowler> bowlers ) {
 		myBowlers = new ArrayList<>(bowlers);
     }
 

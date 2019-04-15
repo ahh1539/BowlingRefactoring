@@ -114,8 +114,6 @@ class ControlDesk extends Thread {
 
 			patron = BowlerFile.getBowlerInfo(nickName);
 
-		} catch (FileNotFoundException e) {
-			System.err.println("Error..." + e);
 		} catch (IOException e) {
 			System.err.println("Error..." + e);
 		}
@@ -124,7 +122,7 @@ class ControlDesk extends Thread {
 	}
 
     /**
-     * Iterate through the available lanes and assign the paties in the wait queue if lanes are available.
+     * Iterate through the available lanes and assign the parties in the wait queue if lanes are available.
      *
      */
 
@@ -134,9 +132,9 @@ class ControlDesk extends Thread {
 		while (it.hasNext() && partyQueue.isEmpty()) {
 			Lane curLane = (Lane) it.next();
 
-			if (curLane.isPartyAssigned() == false) {
+			if (!curLane.isPartyAssigned()) {
 				System.out.println("ok... assigning this party");
-				curLane.assignParty(((Party) partyQueue.poll()));
+				curLane.assignParty((partyQueue.poll()));
 			}
 		}
 		publish(new ControlDeskEvent(getPartyQueue()));
@@ -144,16 +142,16 @@ class ControlDesk extends Thread {
 
 
     /**
-     * Creates a party from a Vector of nickNAmes and adds them to the wait queue.
+     * Creates a party from a Arraylist of nicknames and adds them to the wait queue.
      *
-     * @param partyNicks	A Vector of NickNames
+     * @param partyNicks Arraylist of NickNames
      *
      */
 
-	public void addPartyQueue(Vector partyNicks) {
-		Vector partyBowlers = new Vector();
+	public void addPartyQueue(ArrayList<String> partyNicks) {
+		ArrayList<Bowler> partyBowlers = new ArrayList<>();
 		for (int i = 0; i < partyNicks.size(); i++) {
-			Bowler newBowler = registerPatron(((String) partyNicks.get(i)));
+			Bowler newBowler = registerPatron((partyNicks.get(i)));
 			partyBowlers.add(newBowler);
 		}
 		Party newParty = new Party(partyBowlers);
@@ -162,24 +160,26 @@ class ControlDesk extends Thread {
 	}
 
     /**
-     * Returns a Vector of party names to be displayed in the GUI representation of the wait queue.
+     * Returns a ArrayList of party names to be displayed in the GUI representation of the wait queue.
 	 *
-     * @return a Vector of Strings
+     * @return a ArrayList of Strings
      *
      */
 
 	public ArrayList<String> getPartyQueue() {
 		ArrayList<String> displayPartyQueue = new ArrayList();
+		Party temp = partyQueue.peek();
 		for ( int i=0; i < partyQueue.size(); i++ ) {
-			displayPartyQueue.add(getBowlerParty());
-			partyQueue.iterator().next();
+			displayPartyQueue.add(getBowlerParty(temp));
+			temp = partyQueue.iterator().next();
+
 		}
 		return displayPartyQueue;
 	}
 
-	public String getBowlerParty(){
+	public String getBowlerParty(Party p){
 
-		return partyQueue.peek().getMembers().get(0).getNickName();
+		return p.getMembers().get(0).getNickName();
 	}
     /**
      * Accessor for the number of lanes represented by the ControlDesk
@@ -195,7 +195,7 @@ class ControlDesk extends Thread {
     /**
      * Allows objects to subscribe as observers
      * 
-     * @param adding	the ControlDeskObserver that will be subscribed
+     * @param adding the ControlDeskObserver that will be subscribed
      *
      */
 
@@ -211,13 +211,8 @@ class ControlDesk extends Thread {
      */
 
 	public void publish(ControlDeskEvent event) {
-		Iterator eventIterator = subscribers.iterator();
-		while (eventIterator.hasNext()) {
-			(
-				(ControlDeskObserver) eventIterator
-					.next())
-					.receiveControlDeskEvent(
-				event);
+		for (ControlDeskObserver obs: subscribers) {
+			obs.receiveControlDeskEvent(event);
 		}
 	}
 
