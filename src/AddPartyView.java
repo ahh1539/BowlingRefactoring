@@ -55,7 +55,8 @@ public class AddPartyView implements ActionListener, ListSelectionListener {
 
 	private ControlDeskView controlDesk;
 
-	private String selectedNick, selectedMember;
+	private String selectedNick;
+	private String selectedMember;
 
 	public AddPartyView(ControlDeskView controlDesk, int max) {
 
