@@ -50,4 +50,10 @@ public class FirstNormalState implements ScoreState {
 
         return 0;
     }
+
+    @Override
+    public int[] calculateScore(int index, int[] currentBowlerScores, int current) {
+        return new int[0];
+    }
+
 }

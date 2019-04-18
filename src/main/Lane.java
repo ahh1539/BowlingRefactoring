@@ -307,20 +307,19 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @return			The bowlers total score
 	 */
 	private void getScore( Bowler Cur, int frame) {
-		int[] currentBowlerScores;
-		int strikeballs = 0;
-		int totalScore = 0;
-		currentBowlerScores = (int[]) scores.get(Cur);
-		for (int i = 0; i != 10; i++){
-			cumulScores[bowlIndex][i] = 0;
-		}
-		//the current ball
-		int current = 2*(frame - 1)+ball-1;
+        int[] currentBowlerScores;
+        int strikeballs = 0;
+        int totalScore = 0;
+        currentBowlerScores = (int[]) scores.get(Cur);
+        for (int i = 0; i != 10; i++) {
+            cumulScores[bowlIndex][i] = 0;
+        }
+        //the current ball
+        int current = 2 * (frame - 1) + ball - 1;
 
-		ScoreState state = null;
-		//Iterate through each ball until the current one.
-		for (int index = 0; index != current+2; index++){
-            cumulScores[bowlIndex] = state.calculateScore(index, currentBowlerScores, cumulScores, current);
+        //Iterate through each ball until the current one.
+        for (int index = 0; index != current + 2; index++) {
+            cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, current);
 
 
 
@@ -426,8 +425,8 @@ public class Lane extends Thread implements PinsetterObserver {
 			}
 		}
 		*/
-		System.out.println(totalScore);
-	}
+        }
+    }
 
 	/** isPartyAssigned()
 	 * 

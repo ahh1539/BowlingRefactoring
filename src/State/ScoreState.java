@@ -6,5 +6,5 @@ public interface ScoreState {
 
     int calculateScore(Lane lane);
 
-    int[] calculateScore(int i, int[] curScore, int[][] cumulScores, int current);
+    int[] calculateScore(int index, int[] currentBowlerScores, int current);
 }
