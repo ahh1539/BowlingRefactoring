@@ -9,12 +9,12 @@ import main.Lane;
  * @author Alex Hurley
  */
 
-public class FirstSpareState implements ScoreState {
+public class FirstSpareState extends ScoreState {
 
     private Lane lane;
 
     public FirstSpareState(Lane lane) {
-        this.lane = lane;
+        super(lane);
     }
 
     @Override
@@ -42,9 +42,9 @@ public class FirstSpareState implements ScoreState {
         calculatedScores[(index/2) - 1] += currentBowlerScores[index];
 
         if (currentBowlerScores[index] == 10){
-            lane.setCurrentState(new FirstStrikeState());
+            lane.setCurrentState(new FirstStrikeState(lane));
         }else{
-            lane.setCurrentState(new SecondNormalState());
+            lane.setCurrentState(new SecondNormalState(lane));
         }
 
         return calculatedScores;

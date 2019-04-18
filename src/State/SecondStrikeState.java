@@ -12,7 +12,11 @@ import java.util.HashMap;
  * 2 rolls ago WAS a Strike
  * @author Alex Hurley
  */
-public class SecondStrikeState implements ScoreState {
+public class SecondStrikeState extends ScoreState {
+
+    public SecondStrikeState(Lane lane) {
+        super(lane);
+    }
 
     @Override
     public int calculateScore(Lane lane) {
@@ -28,5 +32,10 @@ public class SecondStrikeState implements ScoreState {
 
         // TODO go and add current and previous roll score to the strike score 2 rolls ago for this class functionality
         return 0;
+    }
+
+    @Override
+    int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        return new int[0];
     }
 }

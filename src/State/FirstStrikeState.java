@@ -9,10 +9,19 @@ import main.Lane;
  * 2 rolls ago was NOT a strike
  * @author alex hurley
  */
-public class FirstStrikeState implements ScoreState {
+public class FirstStrikeState extends ScoreState {
+
+    public FirstStrikeState(Lane lane) {
+        super(lane);
+    }
 
     @Override
     public int calculateScore(Lane lane) {
         return 0;
+    }
+
+    @Override
+    int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        return new int[0];
     }
 }

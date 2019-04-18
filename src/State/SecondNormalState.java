@@ -11,7 +11,11 @@ import java.util.HashMap;
  * Two rolls ago was NOT a Strike
  * @author Alex Hurley
  */
-public class SecondNormalState implements ScoreState {
+public class SecondNormalState extends ScoreState {
+
+    public SecondNormalState(Lane lane) {
+        super(lane);
+    }
 
     @Override
     public int calculateScore(Lane lane) {
@@ -26,7 +30,7 @@ public class SecondNormalState implements ScoreState {
         if (CurrentRollNum % 2 == 0){
             //checks to make sure that the roll is the second roll
             // changes state to a first roll state evens are first odds are second
-            lane.setCurrentState(new FirstNormalState());
+            lane.setCurrentState(new FirstNormalState(lane));
 
         }
         else {
@@ -38,7 +42,7 @@ public class SecondNormalState implements ScoreState {
 
             else if (scores[CurrentRollNum - 2] == 10){
                 // changes the
-                lane.setCurrentState(new SecondStrikeState());
+                lane.setCurrentState(new SecondStrikeState(lane));
             }
             else {
                 // TODO change gui scores accordingly, this is the functionality that this class is supposed to reach
@@ -46,5 +50,10 @@ public class SecondNormalState implements ScoreState {
 
         }
         return 0;
+    }
+
+    @Override
+    int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        return new int[0];
     }
 }

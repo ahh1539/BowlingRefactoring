@@ -2,9 +2,15 @@ package State;
 
 import main.Lane;
 
-public interface ScoreState {
+public abstract class ScoreState {
 
-    int calculateScore(Lane lane);
+    Lane lane;
 
-    int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current);
+    public ScoreState(Lane lane) {
+        this.lane = lane;
+    }
+
+    abstract int calculateScore(Lane lane);
+
+    abstract int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current);
 }
