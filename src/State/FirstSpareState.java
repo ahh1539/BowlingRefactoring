@@ -27,7 +27,13 @@ public class FirstSpareState implements ScoreState {
      * @param index the current index of balls
      * @param currentBowlerScores the scores of each ball by this bowler
      * @param calculatedScores the frame scores of the current bowler
-     * @param current 
+     * @param current
+     *
+     * Changes State:
+     *      When: this ball was a strike (greater than 10)
+     *          To: FirstStrike
+     *      When: this ball was less than 10
+     *          To: normal Second
      * @return
      */
     @Override
