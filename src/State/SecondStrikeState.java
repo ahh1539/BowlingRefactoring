@@ -11,7 +11,7 @@ import java.util.HashMap;
  * the last roll was NOT strike
  * 2 rolls ago WAS a Strike
  * second bowl after a strike in the frame after the strike
- * @author Alex Hurley & Michael Dolan
+ * @author Alex Hurley && Michael Dolan
  */
 public class SecondStrikeState implements ScoreState {
 
