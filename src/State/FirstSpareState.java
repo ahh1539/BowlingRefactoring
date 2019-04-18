@@ -10,20 +10,37 @@ import main.Lane;
  */
 
 public class FirstSpareState implements ScoreState {
-    @Override
-    public int calculateScore(Lane lane) {
 
+    private Lane lane;
 
-
-
-        return 0;
+    public FirstSpareState(Lane lane) {
+        this.lane = lane;
     }
 
     @Override
+    public int calculateScore(Lane lane) {
+        return 0;
+    }
+
+    /**
+     *
+     * @param index the current index of balls
+     * @param currentBowlerScores the scores of each ball by this bowler
+     * @param calculatedScores the frame scores of the current bowler
+     * @param current 
+     * @return
+     */
+    @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
         calculatedScores[index/2] += currentBowlerScores[index];
+        calculatedScores[(index/2) - 1] += currentBowlerScores[index];
 
+        if (currentBowlerScores[index] == 10){
+            lane.setCurrentState(new FirstStrikeState());
+        }else{
+            lane.setCurrentState(new SecondNormalState());
+        }
 
-        return new int[0];
+        return calculatedScores;
     }
 }
