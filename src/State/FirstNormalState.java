@@ -52,7 +52,7 @@ public class FirstNormalState implements ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
         return new int[0];
     }
 

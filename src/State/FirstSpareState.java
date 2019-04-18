@@ -20,7 +20,10 @@ public class FirstSpareState implements ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        calculatedScores[index/2] += currentBowlerScores[index];
+
+
         return new int[0];
     }
 }

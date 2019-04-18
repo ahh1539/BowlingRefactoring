@@ -319,8 +319,8 @@ public class Lane extends Thread implements PinsetterObserver {
 
         //Iterate through each ball until the current one.
         for (int index = 0; index != current + 2; index++) {
-            cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, current);
-
+            cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex], current);
+        }
 
 
 
@@ -426,7 +426,6 @@ public class Lane extends Thread implements PinsetterObserver {
 		}
 		*/
         }
-    }
 
 	/** isPartyAssigned()
 	 * 
