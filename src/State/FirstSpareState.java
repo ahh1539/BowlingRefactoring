@@ -34,7 +34,7 @@ public class FirstSpareState implements ScoreState {
      *          To: FirstStrike
      *      When: if this ball is less than 10
      *          To: normal Second
-     * @return
+     * @return the current bowler's scores per frame
      */
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
