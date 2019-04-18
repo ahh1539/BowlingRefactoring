@@ -12,6 +12,17 @@ import main.Lane;
 public class FirstSpareState implements ScoreState {
     @Override
     public int calculateScore(Lane lane) {
+
+
+
+
         return 0;
+    }
+
+    @Override
+    public int[] calculateScore(int index, int[] curScore, int[][] cumulScores, int current) {
+
+
+        return curScore;
     }
 }
