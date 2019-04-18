@@ -27,6 +27,7 @@ public class Bowler {
     private String fullName;
     private String nickName;
     private String email;
+    private int numBowls = 0;
 
     public Bowler( String nick, String full, String mail ) {
 	nickName = nick;
@@ -52,8 +53,16 @@ public class Bowler {
 	public String getEmail ( ) {
 		return email;	
 	}
-	
-	public boolean equals ( Bowler b) {
+
+	public void setNumBowls() {
+		numBowls++;
+	}
+
+	public int getNumBowls() {
+		return numBowls;
+	}
+
+	public boolean equals (Bowler b) {
 		boolean retval = true;
 		if ( !(nickName.equals(b.getNickName())) ) {
 				retval = false;

@@ -160,6 +160,25 @@ public class Lane extends Thread implements PinsetterObserver {
 	private int gameNumber;
 	
 	private Bowler currentThrower;			// = the thrower who just took a throw
+	private int currentBowlsScore = 0;
+
+
+
+	public HashMap getScores() {
+		return scores;
+	}
+
+	public int getBall() {
+		return ball;
+	}
+
+	public Bowler getCurrentThrower() {
+		return currentThrower;
+	}
+
+	public int getCurrentBowlsScore() {
+		return currentBowlsScore;
+	}
 
 	/** Lane()
 	 * 
@@ -209,6 +228,7 @@ public class Lane extends Thread implements PinsetterObserver {
 					while (canThrowAgain) {
 						setter.ballThrown();		// simulate the thrower's ball hiting
 						ball++;
+						currentThrower.setNumBowls();
 					}
 					
 					if (frameNumber == 9){
@@ -396,6 +416,8 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @param score	The bowler's score 
 	 */
 	private void markScore( Bowler Cur, int frame, int ball, int score ){
+		currentBowlsScore = score;
+
 		int[] curScore;
 		int index =  ( (frame - 1) * 2 + ball);
 
