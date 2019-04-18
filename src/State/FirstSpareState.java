@@ -11,11 +11,6 @@ import main.Lane;
 
 public class FirstSpareState implements ScoreState {
 
-    private Lane lane;
-
-    public FirstSpareState(Lane lane) {
-        this.lane = lane;
-    }
 
     @Override
     public int calculateScore(Lane lane) {
@@ -38,10 +33,15 @@ public class FirstSpareState implements ScoreState {
      */
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        // index/2 is the current frame
         calculatedScores[index/2] += currentBowlerScores[index];
+        //current frame total adds the score received
+
         calculatedScores[(index/2) - 1] += currentBowlerScores[index];
+        // previous frame adds the current bowls score because the previous bowl was a spare
 
         if (currentBowlerScores[index] == 10){
+            //strike scored
             lane.setCurrentState(new FirstStrikeState());
         }else{
             lane.setCurrentState(new SecondNormalState());

@@ -7,7 +7,7 @@ import main.Lane;
  * the last roll was NOT a spare
  * last roll WAS a strike
  * two rolls ago WAS a strike
- * @author Alex Hurley
+ * @author Alex Hurley & Michael Dolan
  */
 public class FirstTwoStrikesState implements ScoreState {
 

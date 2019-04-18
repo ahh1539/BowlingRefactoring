@@ -9,7 +9,7 @@ import java.util.HashMap;
  * SECOND ROLL in a frame
  * The last ball Rolled was NOT a Spare or Strike
  * Two rolls ago was NOT a Strike
- * @author Alex Hurley
+ * @author Alex Hurley & Michael Dolan
  */
 public class SecondNormalState implements ScoreState {
 
@@ -22,6 +22,8 @@ public class SecondNormalState implements ScoreState {
         HashMap<Bowler, int[]> BowlerScores = lane.getScores();
 
         int[] scores = BowlerScores.get(lane.getCurrentThrower());
+
+        int[][] UIscores = lane.getCumulScores();
 
         if (CurrentRollNum % 2 == 0){
             //checks to make sure that the roll is the second roll
@@ -44,6 +46,7 @@ public class SecondNormalState implements ScoreState {
                 // TODO change gui scores accordingly, this is the functionality that this class is supposed to reach
             }
 
+            UIscores
         }
         return 0;
     }
