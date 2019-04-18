@@ -25,11 +25,11 @@ public class FirstSpareState implements ScoreState {
      * @param current
      *
      * Changes State:
-     *      When: this ball was a strike (greater than 10)
+     *      When: if this ball is a strike (greater than 10)
      *          To: FirstStrike
-     *      When: this ball was less than 10
+     *      When: if this ball is less than 10
      *          To: normal Second
-     * @return
+     * @return the current bowler's scores per frame
      */
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
