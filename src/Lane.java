@@ -265,7 +265,7 @@ public class Lane extends Thread implements PinsetterObserver {
 						sr.sendEmail(thisBowler.getEmail());
 						Iterator printIt = printVector.iterator();
 						while (printIt.hasNext()){
-							if (thisBowler.getNick() == (String)printIt.next()){
+							if (thisBowler.getNick().equals((String) printIt.next())){
 								System.out.println("Printing " + thisBowler.getNick());
 								sr.sendPrintout();
 							}
@@ -274,8 +274,7 @@ public class Lane extends Thread implements PinsetterObserver {
 					}
 				}
 			}
-			
-			
+
 			try {
 				sleep(10);
 			} catch (Exception e) {}
@@ -404,6 +403,7 @@ public class Lane extends Thread implements PinsetterObserver {
 
 	
 		curScore[ index - 1] = score;
+
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
 		publish( lanePublish() );
@@ -420,6 +420,7 @@ public class Lane extends Thread implements PinsetterObserver {
 		return laneEvent;
 	}
 
+
 	/** getScore()
 	 *
 	 * Method that calculates a bowlers score
@@ -429,7 +430,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * 
 	 * @return			The bowlers total score
 	 */
-	private int getScore( Bowler Cur, int frame) {
+	private void getScore( Bowler Cur, int frame) {
 		int[] curScore;
 		int strikeballs = 0;
 		int totalScore = 0;
@@ -442,15 +443,21 @@ public class Lane extends Thread implements PinsetterObserver {
 		for (int i = 0; i != current+2; i++){
 			//Spare:
 			if( i%2 == 1 && curScore[i - 1] + curScore[i] == 10 && i < current - 1 && i < 19){
-				//This ball was a the second of a spare.  
+				// second roll
+				// first roll + second roll == 10 pins knocked down
+				// cant roll more than 19 balls in a single game
+				//This ball was a the second of a spare.
 				//Also, we're not on the current ball.
 				//Add the next ball to the ith one in cumul.
-				cumulScores[bowlIndex][(i/2)] += curScore[i+1] + curScore[i]; 
+				cumulScores[bowlIndex][(i/2)] += curScore[i+1] + curScore[i];
 				if (i > 1) {
 					//cumulScores[bowlIndex][i/2] += cumulScores[bowlIndex][i/2 -1];
 				}
 			} else if( i < current && i%2 == 0 && curScore[i] == 10  && i < 18){
 				strikeballs = 0;
+				// first roll
+				// knocked down all pins
+				// ball rolled isnt greater than the 18th
 				//This ball is the first ball, and was a strike.
 				//If we can get 2 balls after it, good add them to cumul.
 				if (curScore[i+2] != -1) {
@@ -495,12 +502,12 @@ public class Lane extends Thread implements PinsetterObserver {
 				} else {
 					break;
 				}
-			}else { 
+			}else {
 				//We're dealing with a normal throw, add it and be on our way.
 				if( i%2 == 0 && i < 18){
 					if ( i/2 == 0 ) {
 						//First frame, first ball.  Set his cumul score to the first ball
-						if(curScore[i] != -2){	
+						if(curScore[i] != -2){
 							cumulScores[bowlIndex][i/2] += curScore[i];
 						}
 					} else if (i/2 != 9){
@@ -509,9 +516,9 @@ public class Lane extends Thread implements PinsetterObserver {
 							cumulScores[bowlIndex][i/2] += cumulScores[bowlIndex][i/2 - 1] + curScore[i];
 						} else {
 							cumulScores[bowlIndex][i/2] += cumulScores[bowlIndex][i/2 - 1];
-						}	
+						}
 					}
-				} else if (i < 18){ 
+				} else if (i < 18){
 					if(curScore[i] != -1 && i > 2){
 						if(curScore[i] != -2){
 							cumulScores[bowlIndex][i/2] += curScore[i];
@@ -520,7 +527,7 @@ public class Lane extends Thread implements PinsetterObserver {
 				}
 				if (i/2 == 9){
 					if (i == 18){
-						cumulScores[bowlIndex][9] += cumulScores[bowlIndex][8];	
+						cumulScores[bowlIndex][9] += cumulScores[bowlIndex][8];
 					}
 					if(curScore[i] != -2){
 						cumulScores[bowlIndex][9] += curScore[i];
@@ -532,7 +539,7 @@ public class Lane extends Thread implements PinsetterObserver {
 				}
 			}
 		}
-		return totalScore;
+		System.out.println(totalScore);
 	}
 
 	/** isPartyAssigned()
