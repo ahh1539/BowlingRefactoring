@@ -530,4 +530,12 @@ public class Lane extends Thread implements PinsetterObserver {
 	public void setCurrentState(ScoreState currentState) {
 		this.currentState = currentState;
 	}
+
+	public int[][] getCumulScores() {
+		return cumulScores;
+	}
+
+	public void setCumulScores(int[][] cumulScores) {
+		this.cumulScores = cumulScores;
+	}
 }
