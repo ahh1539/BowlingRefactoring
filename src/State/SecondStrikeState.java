@@ -12,7 +12,7 @@ import java.util.HashMap;
  * 2 rolls ago WAS a Strike
  * @author Alex Hurley
  */
-public class SecondCaseTwoState implements ScoreState {
+public class SecondStrikeState implements ScoreState {
 
     @Override
     public int calculateScore(Lane lane) {

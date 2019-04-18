@@ -9,7 +9,7 @@ import main.Lane;
  * @author Alex Hurley
  */
 
-public class FirstCaseTwoState implements ScoreState {
+public class FirstSpareState implements ScoreState {
     @Override
     public int calculateScore(Lane lane) {
         return 0;

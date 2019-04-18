@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author Alex Hurley
  */
 
-public class FirstCaseOneState implements ScoreState {
+public class FirstNormalState implements ScoreState {
     @Override
     public int calculateScore(Lane lane) {
 
@@ -26,19 +26,19 @@ public class FirstCaseOneState implements ScoreState {
 
         if (CurrentRollNum % 2 != 0){
             // switches the state to a second roll state
-            lane.setCurrentState(new SecondCaseOneState());
+            lane.setCurrentState(new SecondNormalState());
         }
         else {
             if (scores[CurrentRollNum - 2] + scores[CurrentRollNum - 1] == 10){
                 //switches the state to a first roll state where there is a spare last roll
-                lane.setCurrentState(new FirstCaseTwoState());
+                lane.setCurrentState(new FirstSpareState());
             }
             else if (scores[CurrentRollNum -1] == 10){
                 // switches to a state that includes a strike as its last roll
-                lane.setCurrentState(new FirstCaseThreeState());
+                lane.setCurrentState(new FirstStrikeState());
             }
             else if (scores[CurrentRollNum - 2] == 10){
-                lane.setCurrentState(new FirstCaseFourState());
+                lane.setCurrentState(new FirstTwoStrikesState());
             }
 
             else {

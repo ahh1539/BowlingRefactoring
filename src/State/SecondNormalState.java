@@ -11,7 +11,7 @@ import java.util.HashMap;
  * Two rolls ago was NOT a Strike
  * @author Alex Hurley
  */
-public class SecondCaseOneState implements ScoreState {
+public class SecondNormalState implements ScoreState {
 
     @Override
     public int calculateScore(Lane lane) {
@@ -26,7 +26,7 @@ public class SecondCaseOneState implements ScoreState {
         if (CurrentRollNum % 2 == 0){
             //checks to make sure that the roll is the second roll
             // changes state to a first roll state evens are first odds are second
-            lane.setCurrentState(new FirstCaseOneState());
+            lane.setCurrentState(new FirstNormalState());
 
         }
         else {
@@ -38,7 +38,7 @@ public class SecondCaseOneState implements ScoreState {
 
             else if (scores[CurrentRollNum - 2] == 10){
                 // changes the
-                lane.setCurrentState(new SecondCaseTwoState());
+                lane.setCurrentState(new SecondStrikeState());
             }
             else {
                 // TODO change gui scores accordingly, this is the functionality that this class is supposed to reach

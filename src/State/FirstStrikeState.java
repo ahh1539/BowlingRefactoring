@@ -9,7 +9,7 @@ import main.Lane;
  * 2 rolls ago was NOT a strike
  * @author alex hurley
  */
-public class FirstCaseThreeState implements ScoreState {
+public class FirstStrikeState implements ScoreState {
 
     @Override
     public int calculateScore(Lane lane) {
