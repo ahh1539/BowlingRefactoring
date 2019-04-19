@@ -11,8 +11,6 @@ import main.Lane;
 
 public class FirstSpareState extends ScoreState {
 
-    private Lane lane;
-
     public FirstSpareState(Lane lane) {
         super(lane);
     }

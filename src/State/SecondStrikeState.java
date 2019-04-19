@@ -1,9 +1,6 @@
 package State;
 
-import main.Bowler;
 import main.Lane;
-
-import java.util.HashMap;
 
 /**
  * this is the SECOND ROLL of the frame
