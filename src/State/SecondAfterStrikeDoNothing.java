@@ -2,11 +2,11 @@ package State;
 
 import main.Lane;
 
-public class SecondAfterStrike extends ScoreState {
+public class SecondAfterStrikeDoNothing extends ScoreState {
 
     ScoreState state;
 
-    public SecondAfterStrike(Lane lane, ScoreState state) {
+    public SecondAfterStrikeDoNothing(Lane lane, ScoreState state) {
         super(lane);
         this.state = state;
     }
