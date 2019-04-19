@@ -19,10 +19,10 @@ public class FirstStrikeState extends ScoreState {
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
 
-        calculatedScores[(index/2) - 1] += 1 * currentBowlerScores[index];
+        calculatedScores[(index/2) - 1] += currentBowlerScores[index];
         // adds current bowl score to the previous frame
 
-        calculatedScores[(index/2)] +=  currentBowlerScores[index] + calculatedScores[(index/2) - 1];
+        calculatedScores[(index/2)] =  currentBowlerScores[index] + calculatedScores[(index/2) - 1];
         // adds current bowl score to the current frame and adds the running total
 
 

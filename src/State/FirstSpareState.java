@@ -11,6 +11,7 @@ import main.Lane;
 
 public class FirstSpareState extends ScoreState {
 
+
     public FirstSpareState(Lane lane) {
         super(lane);
     }
@@ -37,7 +38,7 @@ public class FirstSpareState extends ScoreState {
         // previous frame adds the current bowls score because the previous bowl was a spare
 
         // index/2 is the current frame
-        calculatedScores[index/2] += currentBowlerScores[index] + calculatedScores[(index/2) - 1];
+        calculatedScores[index/2] = currentBowlerScores[index] + calculatedScores[(index/2) - 1];
         //current frame total adds the score received and the score of the previous frame
 
 
