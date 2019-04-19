@@ -42,7 +42,7 @@ public class FirstSpareState extends ScoreState {
         // previous frame adds the current bowls score because the previous bowl was a spare
 
         if (currentBowlerScores[index] == 10){
-            lane.setCurrentState(new FirstStrikeState(lane));
+            lane.setCurrentState(new SecondAfterStrikeDoNothing(lane, new FirstStrikeState(lane)));
             //strike scored
         }else{
             lane.setCurrentState(new SecondNormalState(lane));

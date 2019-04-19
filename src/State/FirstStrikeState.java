@@ -25,7 +25,7 @@ public class FirstStrikeState extends ScoreState {
         // adds current bowl score to the previous frame
 
         if (currentBowlerScores[index] == 10){
-            lane.setCurrentState(new FirstTwoStrikesState(lane));
+            lane.setCurrentState(new SecondAfterStrikeDoNothing(lane, new FirstTwoStrikesState(lane)));
         }
        lane.setCurrentState(new SecondStrikeState(lane));
 

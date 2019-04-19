@@ -1,9 +1,6 @@
 package State;
 
-import main.Bowler;
 import main.Lane;
-
-import java.util.HashMap;
 
 /**
  * This is the FIRST ROLL of the frame
@@ -29,7 +26,7 @@ public class FirstNormalState extends ScoreState {
             lane.setCurrentState(new SecondNormalState(lane));
         }
         else {
-            lane.setCurrentState(new FirstStrikeState(lane));
+            lane.setCurrentState(new SecondAfterStrikeDoNothing(lane, new FirstStrikeState(lane)));
         }
 
         return calculatedScores;

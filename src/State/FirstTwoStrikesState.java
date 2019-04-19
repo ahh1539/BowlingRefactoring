@@ -23,7 +23,7 @@ public class FirstTwoStrikesState extends ScoreState {
         calculatedScores[(index/2) - 2] += currentBowlerScores[index];
 
         if (currentBowlerScores[index] == 10){
-            lane.setCurrentState(new FirstTwoStrikesState(lane));
+            lane.setCurrentState(new SecondAfterStrikeDoNothing(lane, new FirstTwoStrikesState(lane)));
         }
         else {
             lane.setCurrentState(new SecondStrikeState(lane));
