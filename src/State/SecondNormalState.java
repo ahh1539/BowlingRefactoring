@@ -21,10 +21,10 @@ public class SecondNormalState extends ScoreState {
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
         if (index == 1) { //If this is the first frame of the game
-            calculatedScores[index / 2] += currentBowlerScores[index];
+            calculatedScores[index / 2] = currentBowlerScores[index] + currentBowlerScores[index-1];
             //adds the current rolls score to the frame total
         }else{
-            calculatedScores[index / 2] += currentBowlerScores[index] + calculatedScores[(index / 2) - 1];
+            calculatedScores[index / 2] = currentBowlerScores[index] + currentBowlerScores[index-1] + calculatedScores[(index / 2) - 1];
             //adds the current rolls score to the frame total. and adds the running total
         }
         if (currentBowlerScores[index] + currentBowlerScores[index -1] == 10){

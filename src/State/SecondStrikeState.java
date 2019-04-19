@@ -25,7 +25,7 @@ public class SecondStrikeState extends ScoreState {
         calculatedScores[(index/2) - 1] += currentBowlerScores[index];
         // adds the current score to one frame ago to keep the running total
 
-        calculatedScores[index/2] += currentBowlerScores[index] + calculatedScores[(index/2) - 1];
+        calculatedScores[index/2] = currentBowlerScores[index] + currentBowlerScores[index-1] + calculatedScores[(index/2) - 1];
         // adds the score to the current frame
 
 
