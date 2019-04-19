@@ -17,46 +17,19 @@ public class SecondNormalState extends ScoreState {
         super(lane);
     }
 
+
     @Override
-    public int calculateScore(Lane lane) {
-        int ScoreThisRoll = lane.getCurrentBowlsScore();
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        calculatedScores[index/2] += currentBowlerScores[index];
+        //adds the current rolls score to the frame total
 
-        int CurrentRollNum = lane.getCurrentThrower().getNumBowls();
-
-        HashMap<Bowler, int[]> BowlerScores = lane.getScores();
-
-        int[] scores = BowlerScores.get(lane.getCurrentThrower());
-
-        int[][] UIscores = lane.getCumulScores();
-
-        if (CurrentRollNum % 2 == 0){
-            //checks to make sure that the roll is the second roll
-            // changes state to a first roll state evens are first odds are second
+        if (currentBowlerScores[index] + currentBowlerScores[index -1] == 10){
+            // if the bowl was a spare then it sends the
+            lane.setCurrentState(new FirstSpareState(lane));
+        } else {
+            // if the bowl was not a spare it changes state back into first regular
             lane.setCurrentState(new FirstNormalState(lane));
-
         }
-        else {
-            if (scores[CurrentRollNum - 1] == 10 || scores[CurrentRollNum - 1] + scores[CurrentRollNum - 2] == 10){
-                // makes sure that last rolled ball was not a spare or strike
-                // having a spare on the first roll would be impossible
-                // TODO change to a previous roll strike or spare state
-            }
-
-            else if (scores[CurrentRollNum - 2] == 10){
-                // changes the
-                lane.setCurrentState(new SecondStrikeState(lane));
-            }
-            else {
-                // TODO change gui scores accordingly, this is the functionality that this class is supposed to reach
-            }
-
-            UIscores
-        }
-        return 0;
-    }
-
-    @Override
-    int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
-        return new int[0];
+        return calculatedScores;
     }
 }

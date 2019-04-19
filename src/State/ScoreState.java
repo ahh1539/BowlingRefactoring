@@ -11,5 +11,5 @@ public abstract class ScoreState {
     }
 
 
-    abstract int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current);
+    public abstract int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current);
 }

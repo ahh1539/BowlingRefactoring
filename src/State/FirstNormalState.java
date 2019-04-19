@@ -24,8 +24,11 @@ public class FirstNormalState extends ScoreState {
         calculatedScores[index/2] += currentBowlerScores[index];
         // adds the current bowls score to the frames total score
 
-        if (currentBowlerScores[index] == 10){
-
+        if (currentBowlerScores[index] != 10){
+            lane.setCurrentState(new SecondNormalState(lane));
+        }
+        else {
+            lane.setCurrentState(new FirstStrikeState(lane));
         }
 
         return calculatedScores;
