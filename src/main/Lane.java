@@ -307,6 +307,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * @return			The bowlers total score
 	 */
 	private void getScore( Bowler Cur, int frame) {
+		currentState = new FirstNormalState(this);
         int[] currentBowlerScores;
         int strikeballs = 0;
         currentBowlerScores = (int[]) scores.get(Cur);
