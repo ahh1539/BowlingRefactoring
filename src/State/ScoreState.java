@@ -10,7 +10,6 @@ public abstract class ScoreState {
         this.lane = lane;
     }
 
-    abstract int calculateScore(Lane lane);
 
     abstract int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current);
 }

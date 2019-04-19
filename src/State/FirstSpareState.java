@@ -17,10 +17,6 @@ public class FirstSpareState extends ScoreState {
         super(lane);
     }
 
-    @Override
-    public int calculateScore(Lane lane) {
-        return 0;
-    }
 
     /**
      *

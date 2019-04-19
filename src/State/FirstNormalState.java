@@ -13,46 +13,10 @@ import java.util.HashMap;
  */
 
 public class FirstNormalState extends ScoreState {
-    public FirstNormalState(Lane lane) {
+
+
+    public FirstNormalState(Lane lane){
         super(lane);
-    }
-
-    @Override
-    public int calculateScore(Lane lane) {
-
-        int ScoreThisRoll = lane.getCurrentBowlsScore();
-
-        int CurrentRollNum = lane.getCurrentThrower().getNumBowls();
-
-        HashMap<Bowler, int[]> BowlerScores = lane.getScores();
-
-        int[] scores = BowlerScores.get(lane.getCurrentThrower());
-
-        if (CurrentRollNum % 2 != 0){
-            // switches the state to a second roll state
-            lane.setCurrentState(new SecondNormalState(lane));
-        }
-        else {
-            if (scores[CurrentRollNum - 2] + scores[CurrentRollNum - 1] == 10){
-                //switches the state to a first roll state where there is a spare last roll
-                lane.setCurrentState(new FirstSpareState(lane));
-            }
-            else if (scores[CurrentRollNum -1] == 10){
-                // switches to a state that includes a strike as its last roll
-                lane.setCurrentState(new FirstStrikeState(lane));
-            }
-            else if (scores[CurrentRollNum - 2] == 10){
-                lane.setCurrentState(new FirstTwoStrikesState(lane));
-            }
-
-            else {
-                // TODO change gui scores accordingly, this is the functionality that this class is supposed to reach
-            }
-
-            //TODO flesh this out more
-        }
-
-        return 0;
     }
 
     @Override
