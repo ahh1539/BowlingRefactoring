@@ -15,15 +15,20 @@ public class FirstTwoStrikesState extends ScoreState {
         super(lane);
     }
 
-    @Override
-    public int calculateScore(Lane lane) {
-        return 0;
-    }
 
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
         calculatedScores[index/2] += currentBowlerScores[index];
         calculatedScores[(index/2) - 1] += currentBowlerScores[index];
         calculatedScores[(index/2) - 2] += currentBowlerScores[index];
+
+        if (currentBowlerScores[index] == 10){
+            lane.setCurrentState(new FirstTwoStrikesState(lane));
+        }
+        else {
+            lane.setCurrentState(new SecondStrikeState(lane));
+        }
+
+        return calculatedScores;
     }
 }

@@ -9,7 +9,7 @@ import java.util.HashMap;
  * This is the FIRST ROLL of the frame
  * the last ball rolled was NOT a strike or spare
  * two rolls ago was NOT a strike
- * @author Alex Hurley
+ * @author Alex Hurley & michael dolan
  */
 
 public class FirstNormalState extends ScoreState {
@@ -22,6 +22,7 @@ public class FirstNormalState extends ScoreState {
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
         calculatedScores[index/2] += currentBowlerScores[index];
+
         // adds the current bowls score to the frames total score
 
         if (currentBowlerScores[index] != 10){

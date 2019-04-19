@@ -11,8 +11,6 @@ import main.Lane;
  */
 public class FirstStrikeState extends ScoreState {
 
-    private int haveAllBallsBeenAdded = 1;
-
     public FirstStrikeState(Lane lane) {
         super(lane);
     }
@@ -21,15 +19,16 @@ public class FirstStrikeState extends ScoreState {
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
         calculatedScores[(index/2)] += currentBowlerScores[index];
-        calculatedScores[(index/2) - 1] += currentBowlerScores[index];
-        // adds current bowl to the previous frame
-        if (haveAllBallsBeenAdded != 2){
-            // checks to make sure that both of the rolls after the strike were added to the
-            lane.setCurrentState(new FirstStrikeState(lane));
-        } else{
-            lane.setCurrentState(new FirstNormalState(lane));
-        }
+        // adds current bowl score to the current frame
 
-        return new int[0];
+        calculatedScores[(index/2) - 1] += currentBowlerScores[index];
+        // adds current bowl score to the previous frame
+
+        if (currentBowlerScores[index] == 10){
+            lane.setCurrentState(new FirstTwoStrikesState(lane));
+        }
+       lane.setCurrentState(new SecondStrikeState(lane));
+
+        return calculatedScores;
     }
 }

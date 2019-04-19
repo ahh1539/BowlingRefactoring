@@ -21,11 +21,20 @@ public class SecondStrikeState extends ScoreState {
 
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+        calculatedScores[index/2] += calculatedScores[index];
+        // adds the score to the current frame
+
+        calculatedScores[(index/2) - 2] += calculatedScores[index];
+        // adds the current score to the strikes frame
+
+        if (calculatedScores[index] + calculatedScores[index-1] == 10){
+            // if it is a spare it sends it into first roll spare state
+            lane.setCurrentState(new FirstSpareState(lane));
+        } else {
+            lane.setCurrentState(new FirstNormalState(lane));
+        }
         return new int[0];
     }
 
-    @Override
-    int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
-        return new int[0];
-    }
+
 }

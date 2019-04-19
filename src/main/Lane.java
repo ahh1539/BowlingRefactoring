@@ -309,7 +309,6 @@ public class Lane extends Thread implements PinsetterObserver {
 	private void getScore( Bowler Cur, int frame) {
         int[] currentBowlerScores;
         int strikeballs = 0;
-        int totalScore = 0;
         currentBowlerScores = (int[]) scores.get(Cur);
         for (int i = 0; i != 10; i++) {
             cumulScores[bowlIndex][i] = 0;
