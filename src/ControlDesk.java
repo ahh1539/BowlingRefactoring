@@ -60,7 +60,7 @@ class ControlDesk extends Thread {
     /**
      * Constructor for the ControlDesk class
      *
-     * @param numlanes	the numbler of lanes to be represented
+     * @param numLanes	the numbler of lanes to be represented
      *
      */
 
@@ -140,12 +140,6 @@ class ControlDesk extends Thread {
 		publish(new ControlDeskEvent(getPartyQueue()));
 	}
 
-    /**
-     */
-
-	public void viewScores(Lane ln) {
-		// TODO: attach a LaneScoreView object to that lane
-	}
 
     /**
      * Creates a party from a Vector of nickNAmes and adds them to the wait queue.

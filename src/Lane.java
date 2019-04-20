@@ -265,7 +265,7 @@ public class Lane extends Thread implements PinsetterObserver {
 						sr.sendEmail(thisBowler.getEmail());
 						Iterator printIt = printVector.iterator();
 						while (printIt.hasNext()){
-							if (thisBowler.getNick() == (String)printIt.next()){
+							if (thisBowler.getNick().equals((String) printIt.next())){
 								System.out.println("Printing " + thisBowler.getNick());
 								sr.sendPrintout();
 							}
@@ -538,15 +538,15 @@ public class Lane extends Thread implements PinsetterObserver {
 	/** isPartyAssigned()
 	 * 
 	 * checks if a party is assigned to this lane
-	 * 
+	 *
 	 * @return true if party assigned, false otherwise
 	 */
 	public boolean isPartyAssigned() {
 		return partyAssigned;
 	}
-	
+
 	/** isGameFinished
-	 * 
+	 *
 	 * @return true if the game is done, false otherwise
 	 */
 	public boolean isGameFinished() {
