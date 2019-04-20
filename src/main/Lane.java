@@ -322,12 +322,12 @@ public class Lane extends Thread implements PinsetterObserver {
         if (current <18) {
             //if the current ball is in the first 9 frames
             for (int index = 0; index != current + 2; index++) {
-                cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex], current);
+                cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex]);
             }
         }else{
             // if the current ball is in the 10th frame
             for (int index = 0; index < 18; index++) {
-                cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex], current);
+                cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex]);
             }
             for (int index = 18; index <= 20; index++){
                 currentState = toThirdFrameState(currentState);
@@ -336,6 +336,11 @@ public class Lane extends Thread implements PinsetterObserver {
 
 	}
 
+	/**
+	 * converts a state to the appropriate third frame state
+	 * @param current
+	 * @return
+	 */
     private ScoreState toThirdFrameState(ScoreState current) {
 	    if(current instanceof FirstNormalState){
 	        return new ThirdFrameFirstNormalState(this);

@@ -13,7 +13,7 @@ public class ThirdFrameThirdNoThird extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         //do nothing, the bowler did not get a third ball in the 10th frame
         return calculatedScores;
     }

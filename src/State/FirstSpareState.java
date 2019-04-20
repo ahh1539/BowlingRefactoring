@@ -22,17 +22,10 @@ public class FirstSpareState extends ScoreState {
      * @param index the current index of balls
      * @param currentBowlerScores the scores of each ball by this bowler
      * @param calculatedScores the frame scores of the current bowler
-     * @param current
-     *
-     * Changes State:
-     *      When: if this ball is a strike (greater than 10)
-     *          To: FirstStrike
-     *      When: if this ball is less than 10
-     *          To: normal Second
      * @return the current bowler's scores per frame
      */
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
 
         calculatedScores[(index/2) - 1] += currentBowlerScores[index];
         // previous frame adds the current bowls score because the previous bowl was a spare

@@ -12,7 +12,7 @@ public class SecondAfterStrikeDoNothing extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         //don't add anything because there is no ball thrown
 
         //change state to firstStrikeState

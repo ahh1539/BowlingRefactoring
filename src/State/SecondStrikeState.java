@@ -17,7 +17,7 @@ public class SecondStrikeState extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
 
         calculatedScores[(index/2) - 1] += currentBowlerScores[index];
         // adds the current score to one frame ago to keep the running total

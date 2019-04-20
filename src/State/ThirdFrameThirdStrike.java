@@ -13,7 +13,7 @@ public class ThirdFrameThirdStrike extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         //one score for the strike, one for the current bowl
         calculatedScores[10] =+ 2* currentBowlerScores[index];
 

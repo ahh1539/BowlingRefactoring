@@ -13,7 +13,7 @@ public class ThirdFrameSecondPreviousFrameStrikeState extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         calculatedScores[9] =+ currentBowlerScores[index];
         //add to the previous frame with a strike
 

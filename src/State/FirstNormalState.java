@@ -17,7 +17,7 @@ public class FirstNormalState extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         if (index == 0) { //If this is the first ball of the game
             calculatedScores[index / 2] = currentBowlerScores[index];
             // adds the current bowls score to the frames total score.

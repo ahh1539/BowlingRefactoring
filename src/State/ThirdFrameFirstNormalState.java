@@ -12,7 +12,7 @@ public class ThirdFrameFirstNormalState extends ScoreState {
     }
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         calculatedScores[10] = currentBowlerScores[index] + calculatedScores[9];
         //just add to the running total
 

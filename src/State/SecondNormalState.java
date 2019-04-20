@@ -1,9 +1,6 @@
 package State;
 
-import main.Bowler;
 import main.Lane;
-
-import java.util.HashMap;
 
 /**
  * SECOND ROLL in a frame
@@ -19,7 +16,7 @@ public class SecondNormalState extends ScoreState {
 
 
     @Override
-    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
+    public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores) {
         if (index == 1) { //If this is the first frame of the game
             calculatedScores[index / 2] = currentBowlerScores[index] + currentBowlerScores[index-1];
             //adds the current rolls score to the frame total
