@@ -28,10 +28,13 @@ public class FirstStrikeState extends ScoreState {
 
 
         if (currentBowlerScores[index] == 10){
+            // checks if the current bowl is a strike if so then state is changed to two strikes in a row state
+            // also adds an extra ball to make up for the skipped ball
             lane.setCurrentState(new SecondAfterStrikeDoNothing(lane, new FirstTwoStrikesState(lane)));
+        }else {
+            // if the current roll is not a strike it sends it to the state where strike 2 rolls ago
+            lane.setCurrentState(new SecondStrikeState(lane));
         }
-       lane.setCurrentState(new SecondStrikeState(lane));
-
         return calculatedScores;
     }
 }

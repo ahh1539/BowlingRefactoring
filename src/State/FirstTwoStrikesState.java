@@ -19,7 +19,7 @@ public class FirstTwoStrikesState extends ScoreState {
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
 
-        calculatedScores[(index/2) - 2] += 1 * currentBowlerScores[index];
+        calculatedScores[(index/2) - 2] += currentBowlerScores[index];
         //add to 2 frames ago
 
         calculatedScores[(index/2) - 1] +=  2 * currentBowlerScores[index];
@@ -27,7 +27,6 @@ public class FirstTwoStrikesState extends ScoreState {
 
         calculatedScores[index/2] +=  currentBowlerScores[index] + calculatedScores[(index/2) - 1];
         // add to current frame
-
 
         if (currentBowlerScores[index] == 10){
             lane.setCurrentState(new SecondAfterStrikeDoNothing(lane, new FirstTwoStrikesState(lane)));
