@@ -310,9 +310,11 @@ public class Lane extends Thread implements PinsetterObserver {
 		currentState = new FirstNormalState(this);
         int[] currentBowlerScores;
         currentBowlerScores = (int[]) scores.get(Cur);
-        for (int i = 0; i != 10; i++) {
-            cumulScores[bowlIndex][i] = 0;
-        }
+
+        //reset the bowler's scores
+        int[] blank = {0,0,0,0,0,0,0,0,0,0};
+		cumulScores[bowlIndex] = blank;
+
         //the current ball
         int current = 2 * (frame - 1) + ball - 1;
 
@@ -341,10 +343,9 @@ public class Lane extends Thread implements PinsetterObserver {
             return new ThirdFrameFirstSpareState(this);
         }else if(current instanceof FirstStrikeState){
             return new ThirdFrameFirstStrikeState(this);
-        }else if(current instanceof FirstTwoStrikesState){
+        }else{
             return new ThirdFrameFirstTwoStrikeState(this);
         }
-		return null;
     }
 
     /** isPartyAssigned()
