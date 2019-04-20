@@ -9,6 +9,19 @@ public class ThirdFrameSecondTwoStrikeState extends ScoreState {
 
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
-        return new int[0];
+        //add bowl to previous frame with strike
+        calculatedScores[9] += currentBowlerScores[index];
+
+        //add current bowl to current frame twice + once for previous frame
+        //add to current frame twice because the current frame has a strike too.
+        calculatedScores[10] += currentBowlerScores[index] * 3;
+
+        if (currentBowlerScores[index] == 10){
+            lane.setCurrentState(new ThirdFrameThirdTwoStrikeState(lane));
+        }else{
+            lane.setCurrentState(new ThirdFrameThirdStrike(lane));
+        }
+
+        return calculatedScores;
     }
 }

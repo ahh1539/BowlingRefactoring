@@ -15,6 +15,12 @@ public class ThirdFrameSecondPreviousFrameStrikeState extends ScoreState {
         calculatedScores[10] += 2 * currentBowlerScores[index];
         //add 2 to the current frame. one for the count in last frame and one for hte count in this frame.
 
-        return new int[0];
+        if (currentBowlerScores[index] + currentBowlerScores[index-1] == 10){
+            lane.setCurrentState(new ThirdFrameThirdSpare(lane));
+        }else{
+            lane.setCurrentState(new ThirdFrameThirdNoThird(lane));
+        }
+
+        return calculatedScores;
     }
 }

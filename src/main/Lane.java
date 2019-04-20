@@ -344,7 +344,7 @@ public class Lane extends Thread implements PinsetterObserver {
         }else if(current instanceof FirstTwoStrikesState){
             return new ThirdFrameFirstTwoStrikeState(this);
         }
-
+		return null;
     }
 
     /** isPartyAssigned()

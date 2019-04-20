@@ -9,6 +9,14 @@ public class ThirdFrameSecondNormalState extends ScoreState {
 
     @Override
     public int[] calculateScore(int index, int[] currentBowlerScores, int[] calculatedScores, int current) {
-        return new int[0];
+        calculatedScores[10] += currentBowlerScores[index];
+
+        if (currentBowlerScores[index] + currentBowlerScores[index-1] == 10){
+            lane.setCurrentState(new ThirdFrameThirdSpare(lane));
+        }else{
+            lane.setCurrentState(new ThirdFrameThirdNoThird(lane));
+        }
+
+        return calculatedScores;
     }
 }
