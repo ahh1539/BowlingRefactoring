@@ -3,6 +3,11 @@ package State;
 import main.Lane;
 
 public class ThirdFrameThirdNoThird extends ScoreState {
+
+    /**
+     * neither a strike or a spare was earned in the 10th frame
+     * @param lane
+     */
     public ThirdFrameThirdNoThird(Lane lane) {
         super(lane);
     }

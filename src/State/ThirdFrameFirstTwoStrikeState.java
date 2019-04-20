@@ -3,6 +3,11 @@ package State;
 import main.Lane;
 
 public class ThirdFrameFirstTwoStrikeState extends ScoreState {
+    /**
+     * The 8th frame had a strike
+     * The 9th frame had a strike
+     * @param lane
+     */
     public ThirdFrameFirstTwoStrikeState(Lane lane) {
         super(lane);
     }

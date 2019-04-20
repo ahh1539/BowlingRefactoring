@@ -3,6 +3,10 @@ package State;
 import main.Lane;
 
 public class ThirdFrameFirstSpareState extends ScoreState {
+    /**
+     * The 9th frame had a spare
+     * @param lane
+     */
     public ThirdFrameFirstSpareState(Lane lane) {
         super(lane);
     }
