@@ -318,116 +318,37 @@ public class Lane extends Thread implements PinsetterObserver {
         int current = 2 * (frame - 1) + ball - 1;
 
         //Iterate through each ball until the current one.
-        for (int index = 0; index != current + 2; index++) {
-            cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex], current);
+        if (current <18) {
+            //if the current ball is in the first 9 frames
+            for (int index = 0; index != current + 2; index++) {
+                cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex], current);
+            }
+        }else{
+            // if the current ball is in the 10th frame
+            for (int index = 0; index < 18; index++) {
+                cumulScores[bowlIndex] = currentState.calculateScore(index, currentBowlerScores, cumulScores[bowlIndex], current);
+            }
+            for (int index = 18; index <= 20; index++){
+                currentState = toThirdFrameState(currentState);
+            }
         }
 
+	}
 
-
-        /*
-
-			//Spare:
-			if( index%2 == 1 && currentBowlerScores[index - 1] + currentBowlerScores[index] == 10 && index < current - 1 && index < 19){
-				// second roll
-				// first roll + second roll == 10 pins knocked down
-				// cant roll more than 19 balls in a single game
-				//This ball was a the second of a spare.
-				//Also, we're not on the current ball.
-				//Add the next ball to the ith one in cumul.
-				cumulScores[bowlIndex][(index/2)] += currentBowlerScores[index+1] + currentBowlerScores[index];
-				if (index > 1) {
-					//cumulScores[bowlIndex][i/2] += cumulScores[bowlIndex][i/2 -1];
-				}
-			} else if( index < current && index%2 == 0 && currentBowlerScores[index] == 10  && index < 18){
-				strikeballs = 0;
-				// first roll
-				// knocked down all pins
-				// ball rolled isnt greater than the 18th
-				//This ball is the first ball, and was a strike.
-				//If we can get 2 balls after it, good add them to cumul.
-				if (currentBowlerScores[index+2] != -1) {
-					strikeballs = 1;
-					if(currentBowlerScores[index+3] != -1) {
-						//Still got em.
-						strikeballs = 2;
-					} else if(currentBowlerScores[index+4] != -1) {
-						//Ok, got it.
-						strikeballs = 2;
-					}
-				}
-				if (strikeballs == 2){
-					//Add up the strike.
-					//Add the next two balls to the current cumulscore.
-					cumulScores[bowlIndex][index/2] += 10;
-					if(currentBowlerScores[index+1] != -1) {
-						cumulScores[bowlIndex][index/2] += currentBowlerScores[index+1] + cumulScores[bowlIndex][(index/2)-1];
-						if (currentBowlerScores[index+2] != -1){
-							if( currentBowlerScores[index+2] != -2){
-								cumulScores[bowlIndex][(index/2)] += currentBowlerScores[index+2];
-							}
-						} else {
-							if( currentBowlerScores[index+3] != -2){
-								cumulScores[bowlIndex][(index/2)] += currentBowlerScores[index+3];
-							}
-						}
-					} else {
-						if ( index/2 > 0 ){
-							cumulScores[bowlIndex][index/2] += currentBowlerScores[index+2] + cumulScores[bowlIndex][(index/2)-1];
-						} else {
-							cumulScores[bowlIndex][index/2] += currentBowlerScores[index+2];
-						}
-						if (currentBowlerScores[index+3] != -1){
-							if( currentBowlerScores[index+3] != -2){
-								cumulScores[bowlIndex][(index/2)] += currentBowlerScores[index+3];
-							}
-						} else {
-							cumulScores[bowlIndex][(index/2)] += currentBowlerScores[index+4];
-						}
-					}
-				} else {
-					break;
-				}
-			}else {
-				//We're dealing with a normal throw, add it and be on our way.
-				if( index%2 == 0 && index < 18){
-					if ( index/2 == 0 ) {
-						//First frame, first ball.  Set his cumul score to the first ball
-						if(currentBowlerScores[index] != -2){
-							cumulScores[bowlIndex][index/2] += currentBowlerScores[index];
-						}
-					} else if (index/2 != 9){
-						//add his last frame's cumul to this ball, make it this frame's cumul.
-						if(currentBowlerScores[index] != -2){
-							cumulScores[bowlIndex][index/2] += cumulScores[bowlIndex][index/2 - 1] + currentBowlerScores[index];
-						} else {
-							cumulScores[bowlIndex][index/2] += cumulScores[bowlIndex][index/2 - 1];
-						}
-					}
-				} else if (index < 18){
-					if(currentBowlerScores[index] != -1 && index > 2){
-						if(currentBowlerScores[index] != -2){
-							cumulScores[bowlIndex][index/2] += currentBowlerScores[index];
-						}
-					}
-				}
-				if (index/2 == 9){
-					if (index == 18){
-						cumulScores[bowlIndex][9] += cumulScores[bowlIndex][8];
-					}
-					if(currentBowlerScores[index] != -2){
-						cumulScores[bowlIndex][9] += currentBowlerScores[index];
-					}
-				} else if (index/2 == 10) {
-					if(currentBowlerScores[index] != -2){
-						cumulScores[bowlIndex][9] += currentBowlerScores[index];
-					}
-				}
-			}
-		}
-		*/
+    private ScoreState toThirdFrameState(ScoreState current) {
+	    if(current instanceof FirstNormalState){
+	        return new ThirdFrameFirstNormalState(this);
+        }else if(current instanceof FirstSpareState){
+            return new ThirdFrameFirstSpareState(this);
+        }else if(current instanceof FirstStrikeState){
+            return new ThirdFrameFirstStrikeState(this);
+        }else if(current instanceof FirstTwoStrikesState){
+            return new ThirdFrameFirstTwoStrikeState(this);
         }
 
-	/** isPartyAssigned()
+    }
+
+    /** isPartyAssigned()
 	 * 
 	 * checks if a party is assigned to this lane
 	 * 
